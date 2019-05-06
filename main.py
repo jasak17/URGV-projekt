@@ -33,9 +33,24 @@ def trilateration(P1, P2, P3, r1, r2, r3):
 
 if __name__ == "__main__":
     # PRIMER 1
-    vector1, vector2, vector3 = np.array([2, 1, 0]), np.array([4, 3, 0]), np.array([4, 4, 1])
-    R1 = 2
-    R2 = 2
-    R3 = 2.449
+    import argparse
+
+    p = argparse.ArgumentParser()
+    p.add_argument('number', type=float ,nargs='+')
+    args = p.parse_args()
+
+
+    vector1, vector2, vector3 = np.array([args.number[0], args.number[1], args.number[2]]), np.array([args.number[4], args.number[5], args.number[6]]), np.array([args.number[8], args.number[9], args.number[10]])
+    R1 = args.number[3]
+    R2 = args.number[7]
+    R3 = args.number[11]
 
     trilateration(vector1, vector2, vector3, R1, R2, R3)
+
+    #PRIMER 1
+    # vector1, vector2, vector3 = np.array([2, 1, 0]), np.array([4, 3, 0]), np.array([4, 4, 1])
+    # R1 = 2
+    # R2 = 2
+    # R3 = 2.449
+    #
+    # trilateration(vector1, vector2, vector3, R1, R2, R3)
