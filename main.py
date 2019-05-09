@@ -23,12 +23,12 @@ def trilateration(P1, P2, P3, r1, r2, r3):
 
     X = ((r1**2)-(r2**2)+(d**2))/(2*d)
     Y = (((r1**2)-(r3**2)+(i**2)+(j**2))/(2*j))-((i/j)*(X))
-    Z1 = np.sqrt(r1**2-X**2-Y**2)
-    Z2 = np.sqrt(r1**2-X**2-Y**2)*(-1)
+    Z1 = np.sqrt(max(0, r1 ** 2 - X ** 2 - Y ** 2))
+    Z2 = np.sqrt(max(0, r1 ** 2 - X ** 2 - Y ** 2)) * (-1)
 
     K1 = P1 + X*Xn + Y * Yn + Z1 * Zn
     K2 = p1 + X * Xn + Y * Yn - Z2 * Zn
-
+    return K1,K2
 
 
 if __name__ == "__main__":
@@ -45,12 +45,6 @@ if __name__ == "__main__":
     R2 = args.number[7]
     R3 = args.number[11]
 
-    trilateration(vector1, vector2, vector3, R1, R2, R3)
+    print(trilateration(vector1, vector2, vector3, R1, R2, R3))
 
-    #PRIMER 1
-    # vector1, vector2, vector3 = np.array([2, 1, 0]), np.array([4, 3, 0]), np.array([4, 4, 1])
-    # R1 = 2
-    # R2 = 2
-    # R3 = 2.449
-    #
-    # trilateration(vector1, vector2, vector3, R1, R2, R3)
+
