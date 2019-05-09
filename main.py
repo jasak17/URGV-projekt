@@ -24,11 +24,13 @@ def trilateration(P1, P2, P3, r1, r2, r3):
     X = ((r1**2)-(r2**2)+(d**2))/(2*d)
     Y = (((r1**2)-(r3**2)+(i**2)+(j**2))/(2*j))-((i/j)*(X))
     Z1 = np.sqrt(max(0, r1 ** 2 - X ** 2 - Y ** 2))
-    Z2 = np.sqrt(max(0, r1 ** 2 - X ** 2 - Y ** 2)) * (-1)
+    Z2 = -Z1
 
     K1 = P1 + X*Xn + Y * Yn + Z1 * Zn
     K2 = p1 + X * Xn + Y * Yn - Z2 * Zn
-    return K1,K2
+    K1[2] = 0
+    K2[2] = 0
+    return np.round(K1, 0), np.round(K2, 0)
 
 
 if __name__ == "__main__":
@@ -36,7 +38,7 @@ if __name__ == "__main__":
     import argparse
 
     p = argparse.ArgumentParser()
-    p.add_argument('number', type=float ,nargs='+')
+    p.add_argument('number', type=float, nargs='+')
     args = p.parse_args()
 
 
